@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>حاسبة العمر - منظر طبيعي ليلي</title>
   <style>
-    /* reset */
     * {
       margin: 0;
       padding: 0;
@@ -27,15 +26,17 @@
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top:0; left:0; right:0; bottom:0;
       background: rgba(0, 0, 50, 0.65);
       z-index: -1;
     }
     #top-image {
-      width: 100px;
-      border-radius: 12px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
       margin-bottom: 10px;
-      box-shadow: 0 0 10px #000;
+      border: 2px solid #fff;
+      box-shadow: 0 0 8px #fff5;
     }
     #top-text {
       color: #ff5555;
@@ -142,10 +143,7 @@
   </style>
 </head>
 <body>
-
-  <!-- ✅ الصورة الصغيرة -->
-  <img id="top-image" src="file-KEnfbApS5gvdwhjGbjcQ28" alt="صورة شخصية" />
-
+  <img id="top-image" src="https://i.ibb.co/ZKT18xSJ/avatar.jpg" alt="صورة شخصية" />
   <div id="top-text">محمد واحمد اغبياء</div>
 
   <div class="container">
@@ -178,7 +176,7 @@
         calculate: 'احسب عمري',
         noDate: 'يرجى اختيار تاريخ ميلادك!',
         futureDate: 'تاريخ الميلاد لا يمكن أن يكون في المستقبل!',
-        ageResult: (y,m,d) => `عمرك هو <strong>${y}</strong> سنة و <strong>${m}</strong> شهر و <strong>${d}</strong> يوم.`,
+        ageResult: (y, m, d) => `عمرك هو <strong>${y}</strong> سنة و <strong>${m}</strong> شهر و <strong>${d}</strong> يوم.`,
         bornDayText: day => `يوم ولادتك كان يوم <span class="born-day">${day}</span>.`,
       },
       en: {
@@ -188,7 +186,7 @@
         calculate: 'Calculate My Age',
         noDate: 'Please select your birth date!',
         futureDate: 'Birth date cannot be in the future!',
-        ageResult: (y,m,d) => `Your age is <strong>${y}</strong> years, <strong>${m}</strong> months, and <strong>${d}</strong> days.`,
+        ageResult: (y, m, d) => `Your age is <strong>${y}</strong> years, <strong>${m}</strong> months, and <strong>${d}</strong> days.`,
         bornDayText: day => `You were born on <span class="born-day">${day}</span>.`,
       }
     };
