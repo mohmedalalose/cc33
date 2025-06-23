@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>حاسبة العمر - منظر طبيعي ليلي</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
@@ -141,10 +137,22 @@
       border-color: #2233cc;
       box-shadow: 0 0 8px #4a65ffcc;
     }
+    .pdf-icon {
+      margin-top: 25px;
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pdf-icon img {
+      width: 60px;
+      height: 60px;
+      filter: drop-shadow(0 0 6px #aaccff);
+    }
+    .pdf-icon:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
-  <!-- صورة شخصية -->
   <img id="top-image" src="https://i.ibb.co/5gLnvpbB/IMG-20240410-070042.jpg" alt="صورة شخصية" />
   <div id="top-text">محمد واحمد اغبياء</div>
 
@@ -164,12 +172,16 @@
 
     <button class="btn" onclick="calculateAge()" id="btn-calc">احسب عمري</button>
 
+    <!-- 📝 أيقونة PDF -->
+    <a href="University%20of%20Fallujah56.pdf" target="_blank" title="عرض ملف PDF" class="pdf-icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF Icon" />
+    </a>
+
     <div class="result" id="result" style="display:none;"></div>
   </div>
 
   <script>
     document.getElementById('birthdate').max = new Date().toISOString().split('T')[0];
-
     const translations = {
       ar: {
         title: 'حاسبة العمر المتقدمة',
@@ -199,15 +211,12 @@
       currentLang = lang;
       document.documentElement.lang = lang;
       document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
       document.getElementById('title').textContent = translations[lang].title;
       document.getElementById('label-birthdate').textContent = translations[lang].birthdate;
       document.getElementById('label-birthtime').textContent = translations[lang].birthtime;
       document.getElementById('btn-calc').textContent = translations[lang].calculate;
-
       document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
       document.getElementById('result').style.display = 'none';
       document.getElementById('birthdate').value = '';
       document.getElementById('birthtime').value = '';
@@ -220,25 +229,20 @@
         alert(translations[currentLang].noDate);
         return;
       }
-
       let birthDateTime = new Date(birthdateInput);
       if (birthtimeInput) {
         const [h, m] = birthtimeInput.split(':');
         birthDateTime.setHours(h);
         birthDateTime.setMinutes(m);
       }
-
       const now = new Date();
-
       if (birthDateTime > now) {
         alert(translations[currentLang].futureDate);
         return;
       }
-
       let years = now.getFullYear() - birthDateTime.getFullYear();
       let months = now.getMonth() - birthDateTime.getMonth();
       let days = now.getDate() - birthDateTime.getDate();
-
       if (days < 0) {
         months--;
         days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
@@ -247,11 +251,9 @@
         years--;
         months += 12;
       }
-
       const daysOfWeekAr = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
       const daysOfWeekEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       const bornDay = currentLang === 'ar' ? daysOfWeekAr[birthDateTime.getDay()] : daysOfWeekEn[birthDateTime.getDay()];
-
       const resultDiv = document.getElementById('result');
       resultDiv.style.display = 'block';
       resultDiv.innerHTML = `
