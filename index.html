@@ -20,95 +20,30 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    .header {
-      position: relative;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo { font-size: 1.8rem; font-weight: bold; background: linear-gradient(45deg, #FFD700, #FFA500);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-    .menu-button, .back-button {
-      background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%; width: 55px; height: 55px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      backdrop-filter: blur(15px); transition: all 0.4s ease;
-      position: relative; overflow: hidden;
-    }
-    .menu-button:hover, .back-button:hover {
-      transform: scale(1.1); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
-    }
-    .back-button {
-      position: absolute; left: 20px; top: 20px; z-index: 10;
-    }
+    .header { position: relative; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: bold; background: linear-gradient(45deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .menu-button, .back-button { background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; width: 55px; height: 55px; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(15px); transition: all 0.4s ease; position: relative; overflow: hidden; }
+    .menu-button:hover, .back-button:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(255,215,0,0.5); }
+    .back-button { position: absolute; left: 20px; top: 20px; z-index: 10; }
     .back-icon { font-size: 28px; color: white; font-weight: bold; }
-    .dropdown-menu {
-      position: absolute; top: 85px; right: 20px;
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(25px);
-      border-radius: 20px; padding: 25px; min-width: 220px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      opacity: 0; visibility: hidden;
-      transform: translateY(-20px) scale(0.9); transition: all 0.4s ease; color: #333;
-    }
+    .dropdown-menu { position: absolute; top: 85px; right: 20px; background: rgba(255,255,255,0.95); backdrop-filter: blur(25px); border-radius: 20px; padding: 25px; min-width: 220px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); opacity: 0; visibility: hidden; transform: translateY(-20px) scale(0.9); transition: all 0.4s ease; color: #333; }
     .dropdown-menu.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
-    .menu-item {
-      padding: 15px 12px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-    .menu-item:hover {
-      background: linear-gradient(45deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
-      transform: translateX(5px);
-    }
-    .main-content {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; padding: 60px 20px 40px;
-      transition: all 1s ease;
-    }
+    .menu-item { padding: 15px 12px; border-radius:12px; cursor: pointer; font-weight: 500; transition: all 0.3s ease; }
+    .menu-item:hover { background: linear-gradient(45deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15)); transform: translateX(5px); }
+    .main-content { display: flex; flex-direction: column; align-items: center; justify-content: center; padding:60px 20px 40px; transition: all 1s ease; }
     .main-content.hide { transform: translateY(100vh); opacity: 0; }
-    .title {
-      font-size: 2.5rem; font-weight: bold; margin-bottom: 20px;
-      background: linear-gradient(45deg, #FFD700, #FFA500, #FF6B6B);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; text-align: center;
-    }
-    .subtitle { font-size: 1.2rem; margin-bottom: 30px; text-align: center; opacity: 0.9; }
-    .oval-button {
-      background: rgba(255, 255, 255, 0.2); border: 2px solid rgba(255, 255, 255, 0.4);
-      border-radius: 50px; padding: 18px 40px; cursor: pointer;
-      font-size: 1.3rem; font-weight: 600; color: white; transition: 0.3s ease;
-    }
-    .oval-button:hover {
-      background: rgba(255, 215, 0, 0.9); color: #333;
-    }
-    .second-page {
-      display: none; flex-direction: column; align-items: center; padding: 80px 20px 40px;
-    }
-    .second-page.show { display: flex; }
-    .search-container {
-      display: flex; flex-direction: column; gap: 20px; align-items: center;
-      max-width: 400px; width: 100%;
-    }
-    .input-field {
-      width: 100%; padding: 15px 25px; font-size: 1.1rem; border-radius: 50px;
-      border: 2px solid rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.15);
-      color: white; text-align: center;
-    }
-    .search-button {
-      padding: 15px 35px; font-size: 1.1rem; border-radius: 50px;
-      border: 2px solid rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.2);
-      color: white; cursor: pointer; font-weight: 600;
-    }
-    .game-result { margin-top: 30px; text-align: center; }
-    .game-result h3 { font-size: 1.5rem; margin-bottom: 10px; }
-    .download-button {
-      padding: 10px 25px; font-size: 1rem; background: #FFD700; color: black;
-      border: none; border-radius: 30px; cursor: pointer; font-weight: bold;
-    }
+    .title { font-size: 2.5rem; font-weight: bold; margin-bottom:20px; background: linear-gradient(45deg, #FFD700,#FFA500,#FF6B6B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-align: center; }
+    .subtitle { font-size:1.2rem; margin-bottom:30px; text-align:center; opacity:0.9; }
+    .oval-button { background: rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.4); border-radius:50px; padding:18px 40px; cursor:pointer; font-size:1.3rem; font-weight:600; color:white; transition:0.3s ease; }
+    .oval-button:hover { background: rgba(255,215,0,0.9); color:#333; }
+    .second-page { display:none; flex-direction: column; align-items:center; padding:80px 20px 40px; }
+    .second-page.show { display:flex; }
+    .search-container { display: flex; flex-direction: column; gap:20px; align-items:center; max-width:400px; width:100%; }
+    .input-field { width:100%; padding:15px 25px; font-size:1.1rem; border-radius:50px; border:2px solid rgba(255,255,255,0.4); background:rgba(255,255,255,0.15); color:white; text-align:center; }
+    .search-button { padding:15px 35px; font-size:1.1rem; border-radius:50px; border:2px solid rgba(255,255,255,0.4); background:rgba(255,255,255,0.2); color:white; cursor:pointer; font-weight:600; }
+    .game-result { margin-top:30px; text-align:center; }
+    .game-result h3 { font-size:1.5rem; margin-bottom:10px; }
+    .download-button { padding:10px 25px; font-size:1rem; background:#FFD700; color:black; border:none; border-radius:30px; cursor:pointer; font-weight:bold; }
   </style>
 </head>
 <body>
@@ -141,6 +76,10 @@
       document.getElementById("dropdownMenu").classList.toggle("show");
     }
 
+    function contactUs() {
+      window.open("https://t.me/i_8eq", "_blank");
+    }
+
     function goToSecondPage() {
       document.getElementById("mainContent").classList.add("hide");
       setTimeout(() => {
@@ -150,8 +89,9 @@
     }
 
     function goBack() {
-      document.getElementById("secondPage").classList.remove("show");
+      document.getElementById("second-page");
       const main = document.getElementById("mainContent");
+      document.getElementById("secondPage").classList.remove("show");
       main.style.display = "flex";
       setTimeout(() => main.classList.remove("hide"), 50);
     }
@@ -164,29 +104,33 @@
       if (input === "1") {
         result.innerHTML = `
           <h3>🎮 PUBG Mobile</h3>
-          <button class="download-button" onclick="downloadGame()">⬇️ تحميل اللعبة</button>
+          <button class="download-button" onclick="downloadPUBG()">⬇️ تحميل اللعبة</button>
+        `;
+      } else if (input === "2") {
+        result.innerHTML = `
+          <h3>🎮 Rusty Lake Roots</h3>
+          <button class="download-button" onclick="downloadRusty()">⬇️ تحميل Rusty Lake Roots</button>
         `;
       } else {
         result.innerHTML = `<p>لم يتم العثور على اللعبة.</p>`;
       }
     }
 
-    function downloadGame() {
+    function downloadPUBG() {
       window.open("https://example.com/pubg.apk", "_blank");
     }
 
-    function contactUs() {
-      window.open("https://t.me/i_8eq", "_blank");
+    function downloadRusty() {
+      window.open("https://www.happymodar.com/rusty-lake-roots-mod/air.com.RustyLake.RustyLakeRoots/", "_blank");
     }
 
-    // إغلاق القائمة عند الضغط خارجها
     document.addEventListener("click", function(e) {
       const menu = document.getElementById("dropdownMenu");
-      const button = document.querySelector(".menu-button");
-      if (!menu.contains(e.target) && !button.contains(e.target)) {
+      const btn = document.querySelector(".menu-button");
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
         menu.classList.remove("show");
       }
     });
   </script>
 </body>
-    </html>
+</html>
