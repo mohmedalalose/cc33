@@ -24,11 +24,9 @@
     .header {
       position: relative;
       padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      height: 60px;
     }
-    .menu-button, .back-button {
+    .menu-button {
       background: rgba(255,255,255,0.15);
       border: 2px solid rgba(255,255,255,0.3);
       border-radius: 50%;
@@ -41,17 +39,62 @@
       backdrop-filter: blur(15px);
       transition: all 0.4s ease;
       position: absolute;
-    }
-    .menu-button {
       right: 20px;
-      top: 60px; /* صعدناها 10px */
+      top: 60px;
+      z-index: 10;
+    }
+    .menu-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(255,215,0,0.5);
+    }
+    .menu-icon {
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+    }
+    .menu-popup {
+      position: fixed;
+      top: 125px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px;
+      border-radius: 20px;
+      border: 2px solid #fff;
+      display: none;
+      z-index: 100;
+      width: 200px;
+      text-align: center;
+    }
+    .menu-popup a {
+      display: block;
+      color: #FFD700;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 10px 0;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+    .menu-popup a:hover {
+      background: rgba(255, 255, 255, 0.1);
     }
     .back-button {
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(15px);
+      transition: all 0.4s ease;
+      position: absolute;
       left: 20px;
       top: 0;
       z-index: 10;
     }
-    .menu-button:hover, .back-button:hover {
+    .back-button:hover {
       transform: scale(1.1);
       box-shadow: 0 10px 30px rgba(255,215,0,0.5);
     }
@@ -59,39 +102,6 @@
       font-size: 28px;
       color: white;
       font-weight: bold;
-    }
-    .dropdown-menu {
-      position: absolute;
-      top: 125px;
-      right: 20px;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(25px);
-      border-radius: 20px;
-      padding: 25px;
-      min-width: 220px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-20px) scale(0.9);
-      transition: all 0.4s ease;
-      color: #333;
-      z-index: 99;
-    }
-    .dropdown-menu.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0) scale(1);
-    }
-    .menu-item {
-      padding: 15px 12px;
-      border-radius:12px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-    .menu-item:hover {
-      background: linear-gradient(45deg, rgba(102,126,234,0.15), rgba(118,75,162,0.15));
-      transform: translateX(5px);
     }
     .page {
       position: absolute;
@@ -164,6 +174,10 @@
       color: white;
       text-align: center;
     }
+    .input-field::placeholder {
+      color: #FFD700;
+      opacity: 1;
+    }
     .search-button {
       padding: 15px 35px;
       font-size: 1.1rem;
@@ -196,49 +210,61 @@
 </head>
 <body onload="showLanguageSelection()">
   <div class="header">
-    <button class="menu-button" onclick="toggleMenu()">☰</button>
-    <div class="dropdown-menu" id="dropdownMenu">
-      <div class="menu-item" onclick="contactUs()">📞 اتصل بنا</div>
+    <div class="menu-button" onclick="toggleMenu()">
+      <div class="menu-icon">⋮</div>
+    </div>
+    <div class="menu-popup" id="menuPopup">
+      <a href="https://t.me/i_8eq" target="_blank">📩 اتصل بنا</a>
     </div>
   </div>
 
   <div class="page show" id="languagePage">
     <h1 class="title">اختر لغتك / Choose Language</h1>
-    <div class="oval-button" onclick="selectLanguage()">🇸🇦 العربية</div>
-    <div class="oval-button" onclick="selectLanguage()">🇺🇸 English</div>
+    <div class="oval-button" onclick="selectLanguage('ar')">🇸🇦 العربية</div>
+    <div class="oval-button" onclick="selectLanguage('en')">🇺🇸 English</div>
   </div>
 
   <div class="page" id="mainContent">
     <button class="back-button" onclick="backToLanguage()"><div class="back-icon">←</div></button>
-    <h1 class="title">Gaming Hub</h1>
-    <p class="subtitle">بعالمي كلشي موجود العب واستمتع</p>
-    <div class="oval-button" onclick="goToSecondPage()">🚀 يلا نروووح</div>
+    <h1 class="title" id="mainTitle">Gaming Hub</h1>
+    <p class="subtitle" id="mainSubtitle">بعالمي كلشي موجود العب واستمتع</p>
+    <div class="oval-button" id="goButton" onclick="goToSecondPage()">🚀 يلا نروووح</div>
   </div>
 
   <div class="page" id="secondPage">
     <button class="back-button" onclick="goBack()"><div class="back-icon">←</div></button>
-    <h2 class="title">اعثر على لعبتك</h2>
+    <h2 class="title" id="searchTitle">اعثر على لعبتك</h2>
     <div class="search-container">
       <input class="input-field" id="gameInput" placeholder="🎮 رقم اللعبة" />
-      <button class="search-button" onclick="searchGame()">🔍 بحث</button>
+      <button class="search-button" id="searchBtn" onclick="searchGame()">🔍 بحث</button>
     </div>
     <div class="game-result" id="gameResult"></div>
   </div>
 
   <script>
-    function toggleMenu() {
-      document.getElementById("dropdownMenu").classList.toggle("show");
-    }
-
-    function contactUs() {
-      window.open("https://t.me/i_8eq", "_blank");
-    }
+    let currentLang = "ar";
 
     function showLanguageSelection() {
       document.getElementById("languagePage").classList.add("show");
     }
 
-    function selectLanguage() {
+    function selectLanguage(lang) {
+      currentLang = lang;
+      if (lang === "en") {
+        document.getElementById("mainTitle").textContent = "Gaming Hub";
+        document.getElementById("mainSubtitle").textContent = "Everything you need — play & enjoy";
+        document.getElementById("goButton").textContent = "🚀 Let's Go";
+        document.getElementById("searchTitle").textContent = "Find Your Game";
+        document.getElementById("searchBtn").textContent = "🔍 Search";
+        document.getElementById("gameInput").placeholder = "🎮 Game Number";
+      } else {
+        document.getElementById("mainTitle").textContent = "Gaming Hub";
+        document.getElementById("mainSubtitle").textContent = "بعالمي كلشي موجود العب واستمتع";
+        document.getElementById("goButton").textContent = "🚀 يلا نروووح";
+        document.getElementById("searchTitle").textContent = "اعثر على لعبتك";
+        document.getElementById("searchBtn").textContent = "🔍 بحث";
+        document.getElementById("gameInput").placeholder = "🎮 رقم اللعبة";
+      }
       switchPage("languagePage", "mainContent");
     }
 
@@ -261,6 +287,11 @@
       }, 300);
     }
 
+    function toggleMenu() {
+      const menu = document.getElementById("menuPopup");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
     function searchGame() {
       const input = document.getElementById("gameInput").value.trim();
       const normalizedInput = input === '1' || input === '١' ? '1' :
@@ -272,48 +303,54 @@
       const result = document.getElementById("gameResult");
       result.innerHTML = "";
 
-      if (normalizedInput === "1") {
+      const games = {
+        "1": {
+          title: "Rusty Lake Roots",
+          desc_ar: "لعبة غموض وتجريب أحداث مرعبة وعائلية غير متوقعة.",
+          desc_en: "A mysterious family puzzle game.",
+          link: "https://www.happymodar.com/rusty-lake-roots-mod/air.com.RustyLake.RustyLakeRoots/"
+        },
+        "2": {
+          title: "Rusty Lake Hotel",
+          desc_ar: "قم بحل الألغاز واستمتع بقصة فريدة في فندق غريب الأطوار.",
+          desc_en: "Solve puzzles in a bizarre hotel with unique characters.",
+          link: "https://www.happymodar.com/rusty-lake-hotel-mod/air.com.RustyLake.RustyLakeHotel/"
+        },
+        "3": {
+          title: "Rusty Lake Paradise",
+          desc_ar: "عش تجربة لعنات مصرية قديمة في جزيرة غامضة.",
+          desc_en: "Face ancient curses on a mysterious island.",
+          link: "https://www.happymodar.com/rusty-lake-paradise-mod/air.com.RustyLake.RustyLakeParadise/"
+        },
+        "4": {
+          title: "Cube Escape: The Lake",
+          desc_ar: "لعبة ألغاز مشوقة في كوخ منعزل قرب البحيرة.",
+          desc_en: "A thrilling puzzle in a lakeside cabin.",
+          link: "https://cube-escape.ar.uptodown.com/android/download"
+        },
+        "5": {
+          title: "The Room Two",
+          desc_ar: "استكشف عالم من الغموض والألغاز ثلاثية الأبعاد.",
+          desc_en: "Explore a 3D world full of mysteries and puzzles.",
+          link: "https://apkpure.com/ar/the-room-two-asia/com.chorusworldwide.theroom2/download"
+        }
+      };
+
+      const game = games[normalizedInput];
+
+      if (game) {
         result.innerHTML = `
-          <h3>🎮 Rusty Lake Roots</h3>
-          <p>لعبة غموض وتجريب أحداث مرعبة وعائلية غير متوقعة.</p>
-          <button class="download-button" onclick="window.open('https://www.happymodar.com/rusty-lake-roots-mod/air.com.RustyLake.RustyLakeRoots/', '_blank')">⬇️ تحميل اللعبة</button>
-        `;
-      } else if (normalizedInput === "2") {
-        result.innerHTML = `
-          <h3>🎮 Rusty Lake Hotel</h3>
-          <p>قم بحل الألغاز واستمتع بقصة فريدة في فندق غريب الأطوار.</p>
-          <button class="download-button" onclick="window.open('https://www.happymodar.com/rusty-lake-hotel-mod/air.com.RustyLake.RustyLakeHotel/', '_blank')">⬇️ تحميل اللعبة</button>
-        `;
-      } else if (normalizedInput === "3") {
-        result.innerHTML = `
-          <h3>🎮 Rusty Lake Paradise</h3>
-          <p>عش تجربة لعنات مصرية قديمة في جزيرة غامضة.</p>
-          <button class="download-button" onclick="window.open('https://www.happymodar.com/rusty-lake-paradise-mod/air.com.RustyLake.RustyLakeParadise/', '_blank')">⬇️ تحميل اللعبة</button>
-        `;
-      } else if (normalizedInput === "4") {
-        result.innerHTML = `
-          <h3>🎮 Cube Escape: The Lake</h3>
-          <p>لعبة ألغاز مشوقة في كوخ منعزل قرب البحيرة.</p>
-          <button class="download-button" onclick="window.open('https://cube-escape.ar.uptodown.com/android/download', '_blank')">⬇️ تحميل اللعبة</button>
-        `;
-      } else if (normalizedInput === "5") {
-        result.innerHTML = `
-          <h3>🎮 The Room Two</h3>
-          <p>استكشف عالم من الغموض والألغاز ثلاثية الأبعاد.</p>
-          <button class="download-button" onclick="window.open('https://apkpure.com/ar/the-room-two-asia/com.chorusworldwide.theroom2/download', '_blank')">⬇️ تحميل اللعبة</button>
+          <h3>🎮 ${game.title}</h3>
+          <p>${currentLang === "en" ? game.desc_en : game.desc_ar}</p>
+          <button class="download-button" onclick="window.open('${game.link}', '_blank')">⬇️ ${currentLang === "en" ? "Download Game" : "تحميل اللعبة"}</button>
         `;
       } else {
-        result.innerHTML = `<p>لم يتم العثور على اللعبة.</p>`;
+        result.innerHTML = currentLang === "en"
+          ? `<p>Game not found.</p>`
+          : `<p>لم يتم العثور على اللعبة.</p>`;
       }
     }
-
-    document.addEventListener("click", function(e) {
-      const menu = document.getElementById("dropdownMenu");
-      const btn = document.querySelector(".menu-button");
-      if (!menu.contains(e.target) && !btn.contains(e.target)) {
-        menu.classList.remove("show");
-      }
-    });
   </script>
 </body>
 </html>
+<!-- نهاية الكود الكامل -->
