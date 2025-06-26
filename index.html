@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,15 +52,11 @@
     <div class="dropdown-menu" id="dropdownMenu">
       <div class="menu-item" onclick="contactUs()">📞 اتصل بنا</div>
     </div>
-  </div>
-
-  <div class="main-content" id="mainContent">
+  </div>  <div class="main-content" id="mainContent">
     <h1 class="title">Gaming Hub</h1>
-    <p class="subtitle">Discover amazing games</p>
-    <div class="oval-button" onclick="goToSecondPage()">🚀 للمتابعة</div>
-  </div>
-
-  <div class="second-page" id="secondPage">
+    <p class="subtitle">بعالمي كلشي موجود العب واستمتع</p>
+    <div class="oval-button" onclick="goToSecondPage()">🚀 يلا نروووح</div>
+  </div>  <div class="second-page" id="secondPage">
     <button class="back-button" onclick="goBack()"><div class="back-icon">←</div></button>
     <h2 class="title">Find Your Game</h2>
     <div class="search-container">
@@ -69,9 +64,7 @@
       <button class="search-button" onclick="searchGame()">🔍 Search Game</button>
     </div>
     <div class="game-result" id="gameResult"></div>
-  </div>
-
-  <script>
+  </div>  <script>
     function toggleMenu() {
       document.getElementById("dropdownMenu").classList.toggle("show");
     }
@@ -89,7 +82,6 @@
     }
 
     function goBack() {
-      document.getElementById("second-page");
       const main = document.getElementById("mainContent");
       document.getElementById("secondPage").classList.remove("show");
       main.style.display = "flex";
@@ -102,11 +94,6 @@
       result.innerHTML = "";
 
       if (input === "1") {
-        result.innerHTML = `
-          <h3>🎮 PUBG Mobile</h3>
-          <button class="download-button" onclick="downloadPUBG()">⬇️ تحميل اللعبة</button>
-        `;
-      } else if (input === "2") {
         result.innerHTML = `
           <h3>🎮 Rusty Lake Roots</h3>
           <button class="download-button" onclick="downloadRusty()">⬇️ تحميل Rusty Lake Roots</button>
@@ -131,6 +118,5 @@
         menu.classList.remove("show");
       }
     });
-  </script>
-</body>
+  </script></body>
 </html>
