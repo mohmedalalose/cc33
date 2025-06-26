@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,11 +53,15 @@
     <div class="dropdown-menu" id="dropdownMenu">
       <div class="menu-item" onclick="contactUs()">📞 اتصل بنا</div>
     </div>
-  </div>  <div class="main-content" id="mainContent">
+  </div>
+
+  <div class="main-content" id="mainContent">
     <h1 class="title">Gaming Hub</h1>
     <p class="subtitle">بعالمي كلشي موجود العب واستمتع</p>
     <div class="oval-button" onclick="goToSecondPage()">🚀 يلا نروووح</div>
-  </div>  <div class="second-page" id="secondPage">
+  </div>
+
+  <div class="second-page" id="secondPage">
     <button class="back-button" onclick="goBack()"><div class="back-icon">←</div></button>
     <h2 class="title">Find Your Game</h2>
     <div class="search-container">
@@ -64,7 +69,9 @@
       <button class="search-button" onclick="searchGame()">🔍 Search Game</button>
     </div>
     <div class="game-result" id="gameResult"></div>
-  </div>  <script>
+  </div>
+
+  <script>
     function toggleMenu() {
       document.getElementById("dropdownMenu").classList.toggle("show");
     }
@@ -95,16 +102,20 @@
 
       if (input === "1") {
         result.innerHTML = `
-          <h3>🎮 Rusty Lake Roots</h3>
-          <button class="download-button" onclick="downloadRusty()">⬇️ تحميل Rusty Lake Roots</button>
+          <h3>🎮 Rusty Lake: Roots</h3>
+          <div class="game-description">
+            🧩 Rusty Lake: Roots<br>
+            لعبة ألغاز وغموض ممتعة!<br><br>
+            ابدأ رحلة غريبة مع شجرة العائلة في Rusty Lake: Roots.<br>
+            كل مرحلة تكشف جزء من قصة غامضة مليئة بالأسرار.<br>
+            إذا تحب الألغاز والتفكير، اللعبة رح تعجبك!
+          </div>
+          <br>
+          <button class="download-button" onclick="downloadRusty()">⬇️ تحميل اللعبة</button>
         `;
       } else {
         result.innerHTML = `<p>لم يتم العثور على اللعبة.</p>`;
       }
-    }
-
-    function downloadPUBG() {
-      window.open("https://example.com/pubg.apk", "_blank");
     }
 
     function downloadRusty() {
@@ -118,5 +129,6 @@
         menu.classList.remove("show");
       }
     });
-  </script></body>
+  </script>
+</body>
 </html>
