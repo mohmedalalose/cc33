@@ -44,6 +44,7 @@
     .game-result { margin-top:30px; text-align:center; }
     .game-result h3 { font-size:1.5rem; margin-bottom:10px; }
     .download-button { padding:10px 25px; font-size:1rem; background:#FFD700; color:black; border:none; border-radius:30px; cursor:pointer; font-weight:bold; }
+    .external-note { margin-top: 10px; font-size: 0.9rem; opacity: 0.8; color: #ffe; }
   </style>
 </head>
 <body>
@@ -72,6 +73,34 @@
   </div>
 
   <script>
+    const games = {
+      "1": {
+        title: "🎮 Rusty Lake Roots",
+        link: "https://www.happymodar.com/rusty-lake-roots-mod/air.com.RustyLake.RustyLakeRoots/",
+        description: "اكتشف جذور عائلة غامضة في مغامرة ألغاز نفسية مليئة بالغموض."
+      },
+      "2": {
+        title: "🎮 Rusty Lake Hotel",
+        link: "https://www.happymodar.com/rusty-lake-hotel-mod/air.com.RustyLake.RustyLakeHotel/",
+        description: "فندق غريب مليء بالنزلاء الغامضين. كل نزيل له قصته، وكل قصة لغز بحد ذاته."
+      },
+      "3": {
+        title: "🎮 Rusty Lake Paradise",
+        link: "https://www.happymodar.com/rusty-lake-paradise-mod/air.com.RustyLake.RustyLakeParadise/",
+        description: "رحلة عبر جزيرة لعينة مليئة بالألغاز المظلمة والرمزية المستوحاة من الضربات المصرية."
+      },
+      "4": {
+        title: "🎮 Cube Escape",
+        link: "https://cube-escape.ar.uptodown.com/android/download",
+        description: "ابدأ رحلتك في سلسلة Cube Escape حيث يُمزج الغموض مع الأجواء النفسية."
+      },
+      "5": {
+        title: "🎮 The Room Two (Asia)",
+        link: "https://apkpure.com/ar/the-room-two-asia/com.chorusworldwide.theroom2/download",
+        description: "تحدى عقلك في غرفة مليئة بالألغاز الواقعية والتفاصيل الغامضة المصممة بدقة."
+      }
+    };
+
     function toggleMenu() {
       document.getElementById("dropdownMenu").classList.toggle("show");
     }
@@ -96,30 +125,21 @@
     }
 
     function searchGame() {
-      const input = document.getElementById("gameInput").value.trim();
+      const inputRaw = document.getElementById("gameInput").value.trim();
+      const input = inputRaw.replace(/[١-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace("٠", "0");
       const result = document.getElementById("gameResult");
       result.innerHTML = "";
 
-      if (input === "1") {
+      if (games[input]) {
         result.innerHTML = `
-          <h3>🎮 Rusty Lake: Roots</h3>
-          <div class="game-description">
-            🧩 Rusty Lake: Roots<br>
-            لعبة ألغاز وغموض ممتعة!<br><br>
-            ابدأ رحلة غريبة مع شجرة العائلة في Rusty Lake: Roots.<br>
-            كل مرحلة تكشف جزء من قصة غامضة مليئة بالأسرار.<br>
-            إذا تحب الألغاز والتفكير، اللعبة رح تعجبك!
-          </div>
-          <br>
-          <button class="download-button" onclick="downloadRusty()">⬇️ تحميل اللعبة</button>
+          <h3>${games[input].title}</h3>
+          <p>${games[input].description}</p>
+          <button class="download-button" onclick="window.open('${games[input].link}', '_blank')">⬇️ تحميل اللعبة</button>
+          <div class="external-note">🚨 سيتم توجيهك لرابط خارجي لتنزيل اللعبة</div>
         `;
       } else {
         result.innerHTML = `<p>لم يتم العثور على اللعبة.</p>`;
       }
-    }
-
-    function downloadRusty() {
-      window.open("https://www.happymodar.com/rusty-lake-roots-mod/air.com.RustyLake.RustyLakeRoots/", "_blank");
     }
 
     document.addEventListener("click", function(e) {
